@@ -11,12 +11,19 @@ class App extends Component {
       {name:"Rajesh",age:27}
     ]
   }
-  personHandler = () => {
+  personHandler = (newName) => {
     this.setState({persons:[
-      {name:"Ramesh",age:30},
+      {name:newName,age:30},
       {name:"Rajesh",age:28},
       {name:'',age:0}
-    ]})
+    ]});
+  }
+  nameChangeHandler = (event) => {
+    this.setState({persons:[
+      {name:event.target.value,age:30},
+      {name:"Rajesh",age:28},
+      {name:'',age:0}
+    ]});
   }
   render() {
     return (
@@ -29,10 +36,19 @@ class App extends Component {
           Hello w
         </p> */}
         <p>Hello</p>
-        <button onClick={this.personHandler}>Click Here</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Cricket</Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        <button onClick={this.personHandler.bind(this,'Rama')}>Click Here</button>
+        <Person 
+          name={this.state.persons[0].name} 
+          age={this.state.persons[0].age}
+          />
+        <Person 
+          name={this.state.persons[1].name} 
+          age={this.state.persons[1].age}
+          click={()=>this.personHandler('Ramar!!')}
+          change={this.nameChangeHandler}>My Hobbies: Cricket</Person>
+        <Person 
+          name={this.state.persons[2].name} 
+          age={this.state.persons[2].age}/>
       </div>
     );
 
