@@ -3,9 +3,33 @@ import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
 import Radium from 'radium';
+import Persons from './Person/persons';
 
 class App extends Component {
-  
+  componentWillMount(){
+    console.log("App.js componet will mount");
+}
+componentDidMount(){
+    console.log("App.js componet did mount");
+
+}
+componentWillReceiveProps()
+{
+    console.log("App.js componet will receive props");
+
+}
+componentWillUpdate(){
+    console.log("App.js componet will update");
+
+}
+componentDidUpdate(){
+    console.log("App.js componet did update");
+
+}
+shouldComponentUpdate(){
+    console.log("App.js componet should update");
+    return true;
+}
   state = {
     persons: [
       { id: 1, name: "Ram", age: 30 },
@@ -49,23 +73,12 @@ class App extends Component {
       style[':hover'] = {
         backgroundColor:'#888'
       }
-      persons = <div>
-        {this.state.persons.map((per, index) => {
-          return <Person
-            click={() => this.deletePersonHandler(index)}
-            change={(event) => this.nameChangeHandler(event, per.id)}
-            name={per.name}
-            age={per.age}
-            key={per.id}
-          />
-        })}
-
-      </div>
+      persons = <Persons persons={this.state.persons} delete={this.deletePersonHandler} change={this.nameChangeHandler}/>
     }
     return (
       <div className="App">
         {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo" />n
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
